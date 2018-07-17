@@ -3,23 +3,20 @@
 <html>
 <head>
 	<title>Login</title>
-	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <!-- Toastr -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+	<script src="<c:url value="/js/login_check.js" />"></script>
 </head>
 <body>
 	<form method="POST" action="login">
 	
 		<label>
-			Id : <input type="text" name="userid">
+			Id : <input type="text" name="userid" id="userid">
 		</label>
 	
 		<label>
-			Password : <input type="password" name="password">
+			Password : <input type="password" name="password" id="password">
 		</label>
 		<br>
-		<input type="submit" value="Login">
+		<input type="submit" value="Login" onclick="return inputConfirm()">
 	</form>
 	
 	<input type="hidden" value="${msg}" id="msg">
@@ -46,7 +43,7 @@
     					  "showMethod": "fadeIn",
     					  "hideMethod": "fadeOut"
     					}
-    				toastr["warning"]("Login Error", msg.val());
+    				toastr["warning"](msg.val(), "LOGIN ERROR");
     		}
     	});
     </script>

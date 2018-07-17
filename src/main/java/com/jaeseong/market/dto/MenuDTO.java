@@ -2,7 +2,7 @@ package com.jaeseong.market.dto;
 
 public class MenuDTO {
 	private int id, price, todaysold;
-	private String name;
+	private String mname;
 	
 	public int getId() {
 		return id;
@@ -22,11 +22,11 @@ public class MenuDTO {
 	public void setTodaysold(int todaysold) {
 		this.todaysold = todaysold;
 	}
-	public String getName() {
-		return name;
+	public String getMname() {
+		return mname;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setMname(String mname) {
+		this.mname = mname;
 	}
 
 	

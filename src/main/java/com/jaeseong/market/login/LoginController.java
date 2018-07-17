@@ -23,10 +23,10 @@ public class LoginController {
 			MemberDTO mem = (MemberDTO) session.getAttribute("loginUser");
 			MemberDTO member = service.getMemberByUserId(mem.getUserid());
 			if(member.getAuth()==0) {
-				return "member/home";
+				return "redirect:member/home";
 			}
 			else {
-				return "admin/home";
+				return "redirect:admin/home";
 			}
 		}
 		return "login/login";
@@ -44,10 +44,10 @@ public class LoginController {
 			MemberDTO member = service.getMemberByUserId(mdto.getUserid());
 			session.setAttribute("loginUser",member);
 			if(member.getAuth()==0) {
-				return "member/home";
+				return "redirect:member/home";
 			}
 			else {
-				return "admin/home";
+				return "redirect:admin/home";
 			}
 		}
 	}
