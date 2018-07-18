@@ -5,5 +5,9 @@
 		select * from menu
 	</select>
 	
+	<delete id="del_menu" parameterType="int">
+		delete from menu where id=#{id}
+	</delete>
+	
 	
 </mapper>

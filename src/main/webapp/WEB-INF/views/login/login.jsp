@@ -1,11 +1,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <html>
 <head>
 	<title>Login</title>
-	<script src="<c:url value="/js/login_check.js" />"></script>
 </head>
+
 <body>
+	<c:import url="../navigation/nav.jsp"/>
 	<form method="POST" action="login">
 	
 		<label>

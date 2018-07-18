@@ -9,13 +9,13 @@
 		select * from member where auth=#{auth}
 	</select>
 	
-	<!-- <select id="getFriends" parameterType="MemberDTO" resultType="MemberDTO">
-		<![CDATA[ select * from member where id <> #{id}  ]]>
-	</select>
+	<insert id="insertMember" parameterType="MemberDTO">
+		insert into member(userid, password, nickname) values
+		(#{userid},#{password},#{nickname})
+	</insert>
 	
-	<update id="edit_profile" parameterType="MemberDTO">
-		update member set name=#{name}, statusmsg=#{statusmsg}
-		where id=#{id}
-	</update> -->
+	<delete id="del_member" parameterType="int">
+		delete from member where id=#{id}
+	</delete>
 	
 </mapper>

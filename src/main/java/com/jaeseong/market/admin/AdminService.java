@@ -26,4 +26,23 @@ public class AdminService {
 	List<MenuDTO> getAllMenu(){
 		return menu_mapper.getAllMenu();
 	}
+	
+	MemberDTO getMemberByUserId(String userid) {
+		return mem_mapper.getMemberByUserId(userid);
+	}
+
+	public void insertMember(MemberDTO mdto) {
+		mem_mapper.insertMember(mdto);
+		
+	}
+
+	public void del_member(int id) {
+		mem_mapper.del_member(id);
+		
+	}
+
+	public void del_menu(int id) {
+		menu_mapper.del_menu(id);
+		
+	}
 }

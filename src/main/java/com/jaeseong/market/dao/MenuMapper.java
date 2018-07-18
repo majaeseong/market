@@ -7,4 +7,6 @@ import com.jaeseong.market.dto.MenuDTO;
 public interface MenuMapper {
 
 	List<MenuDTO> getAllMenu();
+
+	void del_menu(int id);
 }
