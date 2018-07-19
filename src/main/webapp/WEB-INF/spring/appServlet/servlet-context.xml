@@ -28,11 +28,4 @@
 	<beans:bean id="loginService"
 		class="com.jaeseong.market.login.LoginService"></beans:bean>
 
-
-	<!-- 웹 소켓 핸들러 -->
-	<!-- <beans:bean id="myHandler" class="com.jaeseong.mapsco.WebSocketHandler" 
-		/> <websocket:handlers> <websocket:mapping path="/echo" handler="myHandler" 
-		/> <websocket:sockjs /> </websocket:handlers> -->
-
-
 </beans:beans>
