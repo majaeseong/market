@@ -24,8 +24,8 @@
 	</update>
 	
 	<update id="plusTodaySoldById" parameterType="int">
-		update menu set todaysold = todaysold+1
-		where id=#{id}
+		update menu set todaysold = todaysold+#{param2}
+		where id=#{param1}
 	</update>
 	
 </mapper>

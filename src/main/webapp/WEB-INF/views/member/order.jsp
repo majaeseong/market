@@ -14,35 +14,72 @@
 </head>
 <body>
 	<c:import url="../navigation/nav.jsp"/>
-	<table id="myTable">
-		<tr>
-			<th>Order</th>
-		</tr>
-		<tbody></tbody>
-	</table>
-
-	<div id="data"></div>
-
+	<h3>Order</h3>
+	<div style="height:500px; overflow=scroll;">
+		<table id="myTable">
+			<tr>
+				<th>Who</th>
+				<th>What</th>
+				<th>How</th>
+			</tr>
+			<tbody></tbody>
+		</table>
+	</div>
 	<button id="finishedBtn">Okay</button>
 
+
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
+			getOrderByFinished()
+			
 			$('#finishedBtn').click(function() {
 				finished();
 			});
+			
 		});
 
 		var sock = new WebSocket("ws://localhost:8080/market/echo/websocket");
 		sock.onmessage = onMessage;
 
 		function onMessage(evt) {
-			var data = evt.data;
-			$("#myTable > tbody:last").append("<tr><td>" + data + "</td></tr>");
+			alert(evt);
+			getOrderByFinished();
 		}
 
 		function finished() {
 			document.getElementById("myTable").deleteRow('1');
+			location.href="orderFinished";
 		}
+		
+		function getOrderByFinished(){
+			var url = "getOrderByFinished";
+			$.get(url, function(data,status){
+					
+					if(status!=='success'){
+				 		return;
+				 	}
+					$("#myTable > tbody:last").empty();
+					data.forEach(function(obj){
+						$("#myTable > tbody:last").append(
+							"<tr><td>" + obj.mname + "</td>"+
+							"<td>"+obj.menu+"</td>"+
+							"<td>"+obj.quantity+"</td>"+"</tr>"
+						)
+				});
+					
+			});
+			
+			//var data = evt.data;
+			//var order = data.split("|");
+			//$("#myTable > tbody:last").append("<tr><td>" + order[0] + "</td>"+
+			//		"<td>"+order[1]+"</td>"+
+			//		"<td>"+order[2]+"</td></tr>");
+		}
+			
+			
+			
 	</script>
 
 </body>

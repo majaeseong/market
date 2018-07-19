@@ -2,15 +2,30 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.jaeseong.market.dao.Order_Mapper">
 	
-	<insert id="insertOrder" parameterType="int"
+	<insert id="insertOrder" parameterType="Order_DTO"
 		useGeneratedKeys="true" keyProperty="id">
 		insert into order_(mem_id) values
-		(#{id})
+		(#{mem_id})
 	</insert>
 	
 	<insert id="insertOrder_detail" parameterType="Order_detailDTO">
 		insert into order_detail(order_id,menu_id,quantity) values
 		(#{order_id},#{menu_id},#{quantity})
 	</insert>
+	
+	<update id="orderFinished">
+		update order_detail set finished=1
+		where id = 
+		(select * from (select min(id) from order_detail where finished=0) as X)
+	</update>
+	
+	<select id="getOrderByFinished" resultType="OrderForViewDTO">
+		select od.id as id, m.nickname as mname,
+		 od.quantity as quantity, menu.mname as menu from order_detail as od
+			join order_ as o on od.order_id = o.id
+			join member as m on m.id = o.mem_id
+			join menu as menu on od.menu_id = menu.id
+			order by o.id
+	</select>
 	
 </mapper>

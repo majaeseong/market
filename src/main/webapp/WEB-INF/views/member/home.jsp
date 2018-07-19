@@ -24,13 +24,13 @@
 			<c:forEach var="m" items="${menu}">
 				<tr>
 					<td>
-						<input type="checkbox" name="menu[]" value="${m.id}" id="${m.mname}">
+						<input type="checkbox" name="menu[]" value="${m.id}"">
 					</td>
 					<td>
 						${m.mname}
 					</td>
 					<td>
-						<input tpye="number" name="num[]" min="1" value="1">
+						<input type="number" name="num[]" min="1" value="1">
 					</td>
 				</tr>
 			</c:forEach>	
@@ -66,13 +66,7 @@
 				return;
 			}
 			
-			for (var i = 0; i < arr_num.length; i++) {
-				if (arr[i].checked == true) {
-					sock.send(nickname.value+"의 주문 : "+arr[i].id + " "+ arr_num[i].value+"개");
-				}
-				
-			}
-
+			sock.send('okay');
 		}
 	</script>
 </body>
