@@ -15,4 +15,6 @@ public interface MenuMapper {
 	void addMenu(MenuDTO mdto);
 
 	void editMenu(MenuDTO mdto);
+
+	void plusTodaySoldById(int parseInt);
 }

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -13,23 +13,34 @@
 <script type="text/javascript"></script>
 <body>
 	<c:import url="../navigation/nav.jsp"/>
-	
-	<input type="checkbox" id="foot" name="menu[]" value="foot">닭발
-	<input tpye="number" id="foot_num" name="num[]" min="1"></br>
-	
-	<input type="checkbox" id="neck" name="menu[]" value="neck">목살
-	<input tpye="number" id="neck_num" name="num[]" min="1"></br>
-	
-	<input type="checkbox" id="shit" name="menu[]" value="shit">똥집
-	<input tpye="number" id="shit_num" name="num[]" min="1"></br>
-	
-	<input type="checkbox" id="pig" name="menu[]" value="pig">석쇠구이
-	<input tpye="number" id="pig_m[]" name="num[]" min="1"></br>
+	<input type="hidden" value="${loginUser.nickname }" id="nickname">
+	<form action="home" method="POST">
+		<table>
+			<tr>
+				<th>Check</th>
+				<th>Menu Name</th>
+				<th>Quantity</th>
+			</tr>
+			<c:forEach var="m" items="${menu}">
+				<tr>
+					<td>
+						<input type="checkbox" name="menu[]" value="${m.id}" id="${m.mname}">
+					</td>
+					<td>
+						${m.mname}
+					</td>
+					<td>
+						<input tpye="number" name="num[]" min="1" value="1">
+					</td>
+				</tr>
+			</c:forEach>	
+		</table>
+		
+		<input type="submit" value="Order" id="sendBtn"/>
+	</form>
 
-	<input type="text" id="message">
-	<button id="sendBtn">send message</button>
-
 	
+
 	<script type="text/javascript">
 		$(document).ready(function() {
 			$('#sendBtn').click(function() {
@@ -38,24 +49,31 @@
 		});
 
 		var sock = new WebSocket("ws://localhost:8080/market/echo/websocket");
-		//sock.onmessage = onMessage;
 
 		function sendMessage() {
 			var arr = document.getElementsByName('menu[]');
 			var arr_num = document.getElementsByName('num[]');
-
+			var nickname = document.getElementById('nickname');
+			var check=0;
+			
 			for (var i = 0; i < arr_num.length; i++) {
 				if (arr[i].checked == true) {
-					sock.send(arr[i].value + " " + arr_num[i].value);
+					check++;
 				}
+			}
+			if(check==0){
+				alert('please check your order');
+				return;
+			}
+			
+			for (var i = 0; i < arr_num.length; i++) {
+				if (arr[i].checked == true) {
+					sock.send(nickname.value+"의 주문 : "+arr[i].id + " "+ arr_num[i].value+"개");
+				}
+				
 			}
 
 		}
-
-		/* function onMessage(evt) {
-			var data = evt.data;
-			$("#data").append(data + "<br/>");
-		} */
 	</script>
 </body>
 </html>

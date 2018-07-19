@@ -2,7 +2,7 @@ package com.jaeseong.market.dto;
 
 import java.sql.Timestamp;
 
-public class Order_ {
+public class Order_DTO {
 
 	private int id, mem_id;
 	private Timestamp order_time;

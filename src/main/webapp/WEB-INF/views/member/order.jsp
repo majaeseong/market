@@ -35,10 +35,6 @@
 		var sock = new WebSocket("ws://localhost:8080/market/echo/websocket");
 		sock.onmessage = onMessage;
 
-		function sendMessage() {
-			sock.send($("#message").val());
-		}
-
 		function onMessage(evt) {
 			var data = evt.data;
 			$("#myTable > tbody:last").append("<tr><td>" + data + "</td></tr>");

@@ -1,8 +1,8 @@
 package com.jaeseong.market.dto;
 
-public class Order_detail {
+public class Order_detailDTO {
 
-	private int id, order_id, mem_id, menu_id, quantity, finished;
+	private int id, order_id, menu_id, quantity, finished;
 
 	public int getId() {
 		return id;
@@ -18,14 +18,6 @@ public class Order_detail {
 
 	public void setOrder_id(int order_id) {
 		this.order_id = order_id;
-	}
-
-	public int getMem_id() {
-		return mem_id;
-	}
-
-	public void setMem_id(int mem_id) {
-		this.mem_id = mem_id;
 	}
 
 	public int getMenu_id() {
