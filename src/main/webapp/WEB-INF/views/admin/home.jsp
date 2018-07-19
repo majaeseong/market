@@ -59,7 +59,7 @@
 								<td>${l.mname }</td>
 								<td>${l.price }</td>
 								<td>${l.todaysold }</td>
-								<td><button onclick="location.href='edit_menu=1?id=${l.id}'">Edit</button></td>
+								<td><button onclick="location.href='edit_menu?id=${l.id}'">Edit</button></td>
 								<td><button onclick="return confirm_del(1,${l.id })">DELETE</button></td>
 							</c:if>
 						</tr>

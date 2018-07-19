@@ -17,6 +17,12 @@ public class LoginController {
 	@Autowired
 	LoginService service;
 	
+	
+	@RequestMapping(value="/", method= RequestMethod.GET)
+	public String main() {
+		return "redirect:/login";
+	}
+	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login(HttpSession session) {
 		if(session.getAttribute("loginUser")!=null) {

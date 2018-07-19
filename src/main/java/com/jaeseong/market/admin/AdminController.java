@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.jaeseong.market.dto.MemberDTO;
+import com.jaeseong.market.dto.MenuDTO;
 
 
 
@@ -34,6 +35,8 @@ public class AdminController {
 		return "admin/home";
 	}
 	
+	///////////////////////--Member menu--////////////////////////
+	
 	@RequestMapping(value="/member_add", method=RequestMethod.GET)
 	public String member_add() {
 		
@@ -55,7 +58,37 @@ public class AdminController {
 		
 		return "redirect:home?menu_num=0";
 	}
+
 	
+	///////////////////////--Menu menu--////////////////////////
+	
+	@RequestMapping(value="/edit_menu", method=RequestMethod.GET)
+	public String edit_menu(@RequestParam int id, Model model) {
+		
+		if(id!=0) {
+			model.addAttribute("menu", service.getMenuById(id));
+		}
+		else {
+			model.addAttribute("id", id);
+		}
+		return "admin/menu_edit";
+	}
+	
+	@RequestMapping(value="/edit_menu", method=RequestMethod.POST)
+	public String edit_menu(MenuDTO mdto) {
+		
+		if(mdto.getId()==0) {
+			service.addMenu(mdto);
+		}
+		else {
+			service.editMenu(mdto);
+		}
+		return "redirect:home?menu_num=1";
+	}
+	
+	
+	
+	///////////////////////--Common menu--////////////////////////
 	@RequestMapping(value="/delete", method=RequestMethod.GET)
 	public String member_add(@RequestParam int menu_num, @RequestParam int id) {
 		

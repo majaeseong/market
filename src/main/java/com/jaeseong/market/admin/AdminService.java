@@ -18,13 +18,10 @@ public class AdminService {
 	@Autowired
 	MenuMapper menu_mapper;
 	
+	//////////////--Member--//////////////
 	
 	List<MemberDTO> getAllMemberByAuth(int auth){
 		return mem_mapper.getAllMemberByAuth(auth);
-	}
-	
-	List<MenuDTO> getAllMenu(){
-		return menu_mapper.getAllMenu();
 	}
 	
 	MemberDTO getMemberByUserId(String userid) {
@@ -40,9 +37,29 @@ public class AdminService {
 		mem_mapper.del_member(id);
 		
 	}
+	
+	//////////////--Menu--//////////////
+	
+	List<MenuDTO> getAllMenu(){
+		return menu_mapper.getAllMenu();
+	}
 
 	public void del_menu(int id) {
 		menu_mapper.del_menu(id);
+		
+	}
+
+	public MenuDTO getMenuById(int id) {
+		return menu_mapper.getMenuById(id);
+	}
+
+	public void addMenu(MenuDTO mdto) {
+		menu_mapper.addMenu(mdto);
+		
+	}
+
+	public void editMenu(MenuDTO mdto) {
+		menu_mapper.editMenu(mdto);
 		
 	}
 }

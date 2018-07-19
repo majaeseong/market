@@ -9,5 +9,18 @@
 		delete from menu where id=#{id}
 	</delete>
 	
+	<select id="getMenuById" resultType="MenuDTO" parameterType="int">
+		select * from menu where id=#{id}
+	</select>
+	
+	<insert id="addMenu" parameterType="MenuDTO">
+		insert into menu(mname, price)
+			values (#{mname}, #{price})
+	</insert>
+	
+	<update id="editMenu" parameterType="MenuDTO">
+		update menu set mname=#{mname}, price=#{price}
+		where id=#{id}
+	</update>
 	
 </mapper>
