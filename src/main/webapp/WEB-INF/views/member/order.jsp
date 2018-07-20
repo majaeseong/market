@@ -15,7 +15,7 @@
 <body>
 	<c:import url="../navigation/nav.jsp"/>
 	<h3>Order</h3>
-	<div style="height:500px; overflow=scroll;">
+	<div style="height:500px; width:500px; overflow:scroll;">
 		<table id="myTable">
 			<tr>
 				<th>Who</th>
@@ -44,13 +44,22 @@
 		sock.onmessage = onMessage;
 
 		function onMessage(evt) {
-			alert(evt);
-			getOrderByFinished();
+			setTimeout(function(){
+				getOrderByFinished();
+			},3000)
+			
 		}
 
 		function finished() {
 			document.getElementById("myTable").deleteRow('1');
-			location.href="orderFinished";
+			var url = "orderFinished";
+			$.get(url, function(data,status){
+				
+				if(status!=='success'){
+			 		return;
+			 	}
+				
+			});
 		}
 		
 		function getOrderByFinished(){

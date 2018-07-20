@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.jaeseong.market.dto.MemberDTO;
@@ -32,16 +33,28 @@ public class MemberController {
 		return "/member/home";
 	}
 	
-	@RequestMapping(value = "/orderCheck")
+	@RequestMapping(value = "/home", method=RequestMethod.POST)
 	public String orderCheck(HttpServletRequest request, HttpSession session) {
 		
-		String[] menu = request.getParameterValues("checkMenu[]");
-		String[] num = request.getParameterValues("quantity[]");
+		String[] menu = request.getParameterValues("menu[]");
+		String[] num = request.getParameterValues("num[]");
+		String[] real_num = new String[menu.length];
 		
+		int real_num_index = 0;
+		for(int i=0;i<num.length;i++) {
+			if(!num[i].equals("0")) {
+				real_num[real_num_index++]=num[i];
+			}
+				
+		}
+		
+		for(int i=0;i<real_num.length;i++) {
+			System.out.println("hi+ "+real_num[i]);
+		}
 		
 		MemberDTO mem = (MemberDTO)session.getAttribute("loginUser");
 		
-		service.orderProceed(mem.getId(),menu,num);
+		service.orderProceed(mem.getId(),menu,real_num);
 		
 		return "redirect:/member/home";
 	}

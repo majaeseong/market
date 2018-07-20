@@ -21,49 +21,76 @@
 				<th>Menu Name</th>
 				<th>Quantity</th>
 			</tr>
-			<c:forEach var="m" items="${menu}">
+			<c:forEach var="m" items="${menu}" varStatus="s">
 				<tr>
 					<td>
-						<input type="checkbox" name="menu[]" value="${m.id}"">
+						<input type="checkbox" id="menu${s.index}" name="menu[]" value="${m.id}"
+							onclick="checkCheck(this,${s.index})">
 					</td>
 					<td>
 						${m.mname}
 					</td>
 					<td>
-						<input type="number" name="num[]" min="1" value="1">
+						<input type="number" id="num${s.index}" name="num[]" min="0" value="0" disabled>
 					</td>
 				</tr>
 			</c:forEach>	
 		</table>
 		
-		<input type="submit" value="Order" id="sendBtn"/>
+		<input type="submit" value="Order" id="sendBtn" onClick="return count_check()"/>
 	</form>
 	
 	<script type="text/javascript">
+		
 		$(document).ready(function() {
 			$('#sendBtn').click(function() {
 				sendMessage();
 			});
+			
 		});
 		var sock = new WebSocket("ws://localhost:8080/market/echo/websocket");
 		function sendMessage() {
+
+			sock.send('okay');
+			return true;
+		}
+		
+		function checkCheck(obj,num){
+			if(obj.checked==true){
+				var num_id = "num"+num;
+				
+				var o = document.getElementById(num_id);
+				o.disabled=false;
+				
+			}else{
+				var num_id = "num"+num;
+				var o = document.getElementById(num_id);
+				o.value=0;
+				o.disabled=true;
+			}
+		}
+		
+		function count_check(){
 			var arr = document.getElementsByName('menu[]');
 			var arr_num = document.getElementsByName('num[]');
-			var nickname = document.getElementById('nickname');
 			var check=0;
 			
-			for (var i = 0; i < arr_num.length; i++) {
+			for (var i = 0; i < arr.length; i++) {
 				if (arr[i].checked == true) {
 					check++;
+					if(arr_num[i].value==0) {
+						alert('can not order by 0');
+						return false;
+					}
 				}
 			}
+			
 			if(check==0){
 				alert('please check your order');
-				return;
+				return false;
 			}
-			
-			sock.send('okay');
 		}
+		
 	</script>
 </body>
 </html>

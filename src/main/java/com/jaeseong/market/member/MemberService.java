@@ -1,5 +1,6 @@
 package com.jaeseong.market.member;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,7 @@ public class MemberService {
 		return menu_mapper.getAllMenu();
 	}
 
-	@Transactional
+	@Transactional(rollbackFor=SQLException.class)
 	public void orderProceed(int id, String[] menu, String[] num) {
 		Order_DTO o = new Order_DTO();
 		o.setMem_id(id);

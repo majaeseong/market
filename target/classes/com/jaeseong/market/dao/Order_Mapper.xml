@@ -21,10 +21,11 @@
 	
 	<select id="getOrderByFinished" resultType="OrderForViewDTO">
 		select od.id as id, m.nickname as mname,
-		 od.quantity as quantity, menu.mname as menu from order_detail as od
+			od.quantity as quantity, menu.mname as menu from order_detail as od
 			join order_ as o on od.order_id = o.id
 			join member as m on m.id = o.mem_id
 			join menu as menu on od.menu_id = menu.id
+			where od.finished=0
 			order by o.id
 	</select>
 	
