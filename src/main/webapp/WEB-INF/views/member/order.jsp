@@ -44,10 +44,11 @@
 		sock.onmessage = onMessage;
 
 		function onMessage(evt) {
-			setTimeout(function(){
-				getOrderByFinished();
-			},3000)
-			
+			if(evt.data==='okay'){
+				setTimeout(function(){
+					getOrderByFinished();
+				},3000)
+			}
 		}
 
 		function finished() {
