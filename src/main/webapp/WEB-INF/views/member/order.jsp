@@ -60,6 +60,8 @@
 			 	}
 				
 			});
+			
+			sock.send('finish');
 		}
 		
 		function getOrderByFinished(){

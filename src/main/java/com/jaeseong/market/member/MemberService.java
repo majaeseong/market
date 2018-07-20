@@ -58,4 +58,23 @@ public class MemberService {
 		return o_mapper.getOrderByFinished();
 	}
 
+	public List<OrderForViewDTO> getMyOrderById(int id) {
+		return o_mapper.getMyOrderById(id);
+	}
+
+	@Transactional(rollbackFor=SQLException.class)
+	public void delOrderById(int id) {
+		//order_id를 가져온다.
+		System.out.println("okay?");
+		int order_id = o_mapper.getOrderId(id);
+		//detail을 삭제한다.
+		o_mapper.deleteOrderDetailById(id);
+		//detail에 같은 order가 있는지 확인한다.
+		//없다면 order_id도 삭제한다.
+		if(o_mapper.countOrderDetailByOrderId(order_id)==0) {
+			o_mapper.deleteOrder(order_id);
+		}
+		
+	}
+
 }

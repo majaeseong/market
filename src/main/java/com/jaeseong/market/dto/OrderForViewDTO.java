@@ -1,8 +1,11 @@
 package com.jaeseong.market.dto;
 
+import java.sql.Timestamp;
+
 public class OrderForViewDTO {
 	private String mname, menu;
 	private int id, quantity;
+	private Timestamp t;
 	
 	public String getMname() {
 		return mname;
@@ -28,6 +31,11 @@ public class OrderForViewDTO {
 	public void setId(int id) {
 		this.id = id;
 	}
-	
+	public Timestamp getT() {
+		return t;
+	}
+	public void setT(Timestamp t) {
+		this.t = t;
+	}
 	
 }

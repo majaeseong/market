@@ -15,5 +15,14 @@ public interface Order_Mapper {
 	void orderFinished();
 
 	List<OrderForViewDTO> getOrderByFinished();
-	
+
+	List<OrderForViewDTO> getMyOrderById(int id);
+
+	int getOrderId(int id);
+
+	void deleteOrderDetailById(int id);
+
+	int countOrderDetailByOrderId(int order_id);
+
+	void deleteOrder(int order_id);
 }

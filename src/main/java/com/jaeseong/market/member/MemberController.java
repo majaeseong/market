@@ -1,10 +1,8 @@
 package com.jaeseong.market.member;
 
 import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,11 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.jaeseong.market.dto.MemberDTO;
 import com.jaeseong.market.dto.OrderForViewDTO;
-
-
 
 @Controller
 @RequestMapping(value="/member")
@@ -28,10 +23,14 @@ public class MemberController {
 	@RequestMapping(value = "/home", method=RequestMethod.GET)
 	public String home(Model model, HttpSession session) {
 		
-		model.addAttribute("loginUser",(MemberDTO)session.getAttribute("loginUser"));
+		MemberDTO mem = (MemberDTO)session.getAttribute("loginUser");
+		
+		model.addAttribute("loginUser",mem);
 		model.addAttribute("menu", service.getAllMenu());
 		return "/member/home";
 	}
+	
+	
 	
 	@RequestMapping(value = "/home", method=RequestMethod.POST)
 	public String orderCheck(HttpServletRequest request, HttpSession session) {
@@ -59,11 +58,16 @@ public class MemberController {
 		return "redirect:/member/home";
 	}
 	
-	
-	
 	@RequestMapping(value = "/order")
 	public String order() {
 		return "/member/order";
+	}
+	
+	@RequestMapping(value = "/delOrderById")
+	public String delOrderById(@RequestParam int id) {
+		service.delOrderById(id);
+		
+		return "redirect:/member/home";
 	}
 	
 	@RequestMapping(value = "/getOrderByFinished")
@@ -75,6 +79,12 @@ public class MemberController {
 	@RequestMapping(value = "/orderFinished")
 	@ResponseBody public void orderFinished() {
 		service.orderFinished();
+	}
+	
+	@RequestMapping(value = "/getMyOrder", produces="application/json")
+	@ResponseBody public List<OrderForViewDTO> getMyOrder(HttpSession session) {
+		MemberDTO mem = (MemberDTO)session.getAttribute("loginUser");
+		return service.getMyOrderById(mem.getId());
 	}
 	
 }

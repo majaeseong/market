@@ -29,4 +29,30 @@
 			order by o.id
 	</select>
 	
+	<select id="getMyOrderById" resultType="OrderForViewDTO" parameterType="int">
+		select od.id as id, o.order_time as t,
+			od.quantity as quantity, menu.mname as menu from order_detail as od
+			join order_ as o on od.order_id = o.id
+			join member as m on m.id = o.mem_id
+			join menu as menu on od.menu_id = menu.id
+			where od.finished=0 and m.id=#{id}
+			order by o.id
+	</select>
+	
+	<select id="getOrderId" resultType="int" parameterType="int">
+		select order_id from order_detail where id=#{id}
+	</select>
+	
+	<delete id="deleteOrderDetailById" parameterType="int">
+		delete from order_detail where id=#{id}
+	</delete>
+	
+	<select id="countOrderDetailByOrderId" parameterType="int" resultType="int">
+		select count(*) from order_detail where order_id = #{order_id}
+	</select>
+	
+	<delete id="deleteOrder" parameterType="int">
+		delete from order_ where id=#{order_id}
+	</delete>
+	
 </mapper>
