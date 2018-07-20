@@ -38,18 +38,14 @@
 		
 		<input type="submit" value="Order" id="sendBtn"/>
 	</form>
-
 	
-
 	<script type="text/javascript">
 		$(document).ready(function() {
 			$('#sendBtn').click(function() {
 				sendMessage();
 			});
 		});
-
 		var sock = new WebSocket("ws://localhost:8080/market/echo/websocket");
-
 		function sendMessage() {
 			var arr = document.getElementsByName('menu[]');
 			var arr_num = document.getElementsByName('num[]');

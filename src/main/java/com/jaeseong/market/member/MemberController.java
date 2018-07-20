@@ -32,11 +32,12 @@ public class MemberController {
 		return "/member/home";
 	}
 	
-	@RequestMapping(value = "/home", method=RequestMethod.POST)
-	public String home(HttpServletRequest request, HttpSession session) {
+	@RequestMapping(value = "/orderCheck")
+	public String orderCheck(HttpServletRequest request, HttpSession session) {
 		
-		String[] menu = request.getParameterValues("menu[]");
-		String[] num = request.getParameterValues("num[]");
+		String[] menu = request.getParameterValues("checkMenu[]");
+		String[] num = request.getParameterValues("quantity[]");
+		
 		
 		MemberDTO mem = (MemberDTO)session.getAttribute("loginUser");
 		

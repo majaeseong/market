@@ -71,11 +71,6 @@
 					
 			});
 			
-			//var data = evt.data;
-			//var order = data.split("|");
-			//$("#myTable > tbody:last").append("<tr><td>" + order[0] + "</td>"+
-			//		"<td>"+order[1]+"</td>"+
-			//		"<td>"+order[2]+"</td></tr>");
 		}
 			
 			
