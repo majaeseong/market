@@ -14,10 +14,10 @@
 <body>
 	<c:import url="../navigation/nav.jsp"/>
 	<input type="hidden" value="${loginUser.nickname }" id="nickname">
-	
-		<div>
+	<div class="member_home_all">
+		<div class="member_home">
 			<form action="home" method="POST">
-				<table>
+				<table class="menu_table table-hover table-bordered">
 					<tr>
 						<th>Check</th>
 						<th>Menu Name</th>
@@ -33,18 +33,20 @@
 								${m.mname}
 							</td>
 							<td>
-								<input type="number" id="num${s.index}" name="num[]" min="0" value="0" disabled>
+								<input type="number" id="num${s.index}" name="num[]" min="0" value="0" disabled class="num_input_box">
 							</td>
 						</tr>
 					</c:forEach>	
 				</table>
 				
-				<input type="submit" value="Order" id="sendBtn" onClick="return count_check()"/>
+				<input type="submit" value="Order" id="sendBtn" onClick="return count_check()"
+					class="btn btn-success order_btn" />
 			</form>
 		</div>
-		<div>
+		
+		<div class="member_myOrder">
 			<h3>My Order</h3>
-			<table id="myTable">
+			<table id="myTable" class="table-striped table-bordered">
 				<tr>
 					<th>Menu</th>
 					<th>Quantity</th>
@@ -54,6 +56,7 @@
 				<tbody></tbody>
 			</table>
 		</div>
+	</div>
 	
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
@@ -152,7 +155,7 @@
 							"<tr><td>" + obj.menu + "</td>"+
 							"<td>"+obj.quantity+"</td>"+
 							"<td>"+hour+" : "+min+"</td>"+
-							"<td>"+"<button onclick='del_order("+obj.id+")'>"+"Del"+"</button>"+"</td>"+
+							"<td>"+"<button onclick='del_order("+obj.id+")' class='btn btn-danger btn-sm'>"+"Del"+"</button>"+"</td>"+
 							"</tr>"
 						)
 				});

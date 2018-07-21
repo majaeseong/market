@@ -14,19 +14,21 @@
 </head>
 <body>
 	<c:import url="../navigation/nav.jsp"/>
-	<h3>Order</h3>
-	<div style="height:500px; width:500px; overflow:scroll;">
-		<table id="myTable">
-			<tr>
-				<th>Who</th>
-				<th>What</th>
-				<th>How</th>
-			</tr>
-			<tbody></tbody>
-		</table>
+	
+	<div class="member_order">
+		<h3>Order</h3>
+		<div class="order_box">
+			<table id="myTable" class="table-bordered">
+				<tr>
+					<th>Who</th>
+					<th>What</th>
+					<th>How</th>
+				</tr>
+				<tbody></tbody>
+			</table>
+		</div>
+		<button id="finishedBtn" class="btn btn-primary okay_btn">Okay</button>
 	</div>
-	<button id="finishedBtn">Okay</button>
-
 
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>

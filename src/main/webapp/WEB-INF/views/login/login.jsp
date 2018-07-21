@@ -8,15 +8,29 @@
 	<c:import url="../navigation/nav.jsp"/>
 	<form method="POST" action="login">
 	
-		<label>
-			Id : <input type="text" name="userid" id="userid">
-		</label>
-	
-		<label>
-			Password : <input type="password" name="password" id="password">
-		</label>
-		<br>
-		<input type="submit" value="Login" onclick="return inputConfirm()">
+		<table class="login_table">
+			<tr>
+				<td>
+					ID
+				</td>
+				<td>
+					<input type="text" name="userid" id="userid">
+				</td>
+			</tr>
+			<tr>
+				<td>
+					PASSWORD
+				</td>
+				<td>
+					<input type="password" name="password" id="password">
+				</td>
+				<td rowspan="2" >
+					<input type="submit" value="Login" onclick="return inputConfirm()" 
+						class="btn btn-info btn-sm">
+				</td>
+			</tr>
+		</table>
+		
 	</form>
 	
 	<input type="hidden" value="${msg}" id="msg">

@@ -1,0 +1,29 @@
+.admin_home{
+	display: flex;
+	justify-content: space-around;
+	margin-top:20px;
+}
+
+.left_menu{
+	display:flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.left_menu a{
+	text-decoration: none;
+	color:#3AB0D3;
+}
+
+.right_main #myTable{
+	width:500px;
+	text-align: center;
+}
+
+.right_main #myTable td{
+	padding:5px;
+}
+
+.right_main .btn_div{
+	text-align: right;
+}

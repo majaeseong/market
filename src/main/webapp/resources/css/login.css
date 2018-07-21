@@ -1,0 +1,13 @@
+.login_table{
+	margin:10px;
+}
+
+.login_table td{
+	padding-right:8px;
+	padding-bottom:8px;
+}
+
+.login_table .login_btn{
+	height:52px;
+	padding:10px;
+}

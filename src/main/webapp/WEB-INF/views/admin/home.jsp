@@ -13,18 +13,19 @@
 	<main class="admin_home">
 		<div class="left_menu">
 			<a href="home?menu_num=0">Member Add / Edit</a>
-			<br>
 			<a href="home?menu_num=1">Menu Add / Edit</a>
 		</div>
 		<div class="right_main">
-			<c:if test="${menu_num==0}">
-				<button onclick="location.href='member_add'">Add Member</button>
-			</c:if> 
-			<c:if test="${menu_num==1}">
-				<button onclick="location.href='edit_menu?id=0'">Add Menu</button>
-			</c:if>
-			
-			<table>
+			<div class="btn_div">
+				<c:if test="${menu_num==0}">
+					<button onclick="location.href='member_add'" class="btn btn-info">Add Member</button>
+				</c:if> 
+				<c:if test="${menu_num==1}">
+					<button onclick="location.href='edit_menu?id=0'" class="btn btn-info">Add Menu</button>
+				</c:if>
+			</div>
+			<br>
+			<table id="myTable" class="table-bordered">
 				<thead>
 					<tr>
 						<c:if test="${menu_num==0}">
@@ -52,22 +53,24 @@
 								<td>${l.userid }</td>
 								<td>${l.nickname }</td>
 								<td>${l.auth }</td>
-								<td><button onclick="return confirm_del(0,${l.id})">DELETE</button></td>
+								<td><button onclick="return confirm_del(0,${l.id})" class="btn btn-danger btn-sm">DELETE</button></td>
 							</c:if>
 							<c:if test="${menu_num==1}">
 								<td>${l.id }</td>
 								<td>${l.mname }</td>
 								<td>${l.price }</td>
 								<td>${l.todaysold }</td>
-								<td><button onclick="location.href='edit_menu?id=${l.id}'">Edit</button></td>
-								<td><button onclick="return confirm_del(1,${l.id })">DELETE</button></td>
+								<td><button onclick="location.href='edit_menu?id=${l.id}'" class="btn btn-primary btn-sm">Edit</button></td>
+								<td><button onclick="return confirm_del(1,${l.id })" class="btn btn-danger btn-sm">DELETE</button></td>
 							</c:if>
 						</tr>
 					</c:forEach>
 				</tbody>
 			</table>
+			<br>
 			<c:if test="${menu_num==1}">
-				<input type="button" name="excelConverBtn" id="excelConverBtn" value="excel" onclick="gogo()"/>
+				<input type="button" name="excelConverBtn" id="excelConverBtn" 
+					value="excel" onclick="gogo()" class="btn btn-success"/>
 				*if you download this, today's sold become zero*
 			</c:if>
 		</div>

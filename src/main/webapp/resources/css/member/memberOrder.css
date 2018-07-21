@@ -1,0 +1,17 @@
+.member_order{
+	margin: 15px;
+}
+.order_box{
+	height:300px;
+	width:500px;
+	overflow: scroll;
+}
+
+.order_box #myTable{
+	width:350px;
+	text-align: center;
+}
+
+.okay_btn{
+	margin-left:150px;
+}

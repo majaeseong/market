@@ -12,28 +12,47 @@
 	<main>
 		<form action="myPage" method="POST">
 			<input type="hidden" value="${mem.id }" name="id">
-			<label>
-				Id : 
-				<input type="text" name="userid" id="userid" value="${mem.userid}" disabled>
-			</label>
-			<label>
-				NickName : 
-				<input type="text" name="nickname" id="nickname" value="${mem.nickname }">
-			</label>
-			<label>
-				Now Password : 
-				<input type="password" name="old_password" id="old_password">
-				<input type="hidden" name="op" value="${mem.password }" id="op">
-			</label>
-			<label>
-				New Password : 
-				<input type="password" name="password" id="password">
-			</label>
-			<label>
-				Confirm Password : 
-				<input type="password" name="password2" id="password2">
-			</label>
-			<input type="submit" value="Edit" onclick="return check_myPage()">
+			<div class="myPage">
+				<table id="myTable" class="table-hover">
+					<tr>
+						<td>ID</td>
+						<td>
+							<input type="text" name="userid" id="userid" value="${mem.userid}" disabled="disabled">
+						</td>
+					</tr>
+					<tr>
+						<td>NickName</td>
+						<td>
+							<input type="text" name="nickname" id="nickname" value="${mem.nickname }">
+						</td>
+					</tr>
+					<tr>
+						<td>Now Password</td>
+						<td>
+							<input type="password" name="old_password" id="old_password">
+							<input type="hidden" name="op" value="${mem.password }" id="op">
+						</td>
+					</tr>
+					<tr>
+						<td>New Password</td>
+						<td>
+							<input type="password" name="password" id="password">
+						</td>
+					</tr>
+					<tr>
+						<td>Confirm Password</td>
+						<td>
+							<input type="password" name="password2" id="password2">
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2" style="text-align: right">
+							<input type="submit" value="Edit" onclick="return check_myPage()"
+								class="btn btn-success">
+						</td>
+					</tr>
+				</table>
+			</div>
 		</form>
 	</main>
 
