@@ -10,4 +10,5 @@ public interface MemberMapper {
 	List<MemberDTO> getAllMemberByAuth(int auth);
 	void insertMember(MemberDTO mdto);
 	void del_member(int id);
+	void editMember(MemberDTO mdto);
 }

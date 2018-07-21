@@ -62,4 +62,9 @@ public class AdminService {
 		menu_mapper.editMenu(mdto);
 		
 	}
+
+	public void setZeroTodaySold() {
+		menu_mapper.setZeroTodaySold();
+		
+	}
 }

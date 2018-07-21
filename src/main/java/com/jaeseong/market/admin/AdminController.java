@@ -1,5 +1,10 @@
 package com.jaeseong.market.admin;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -101,4 +106,26 @@ public class AdminController {
 		}
 	}
 	
+	///////////////////////--Excel Down--////////////////////////
+	@RequestMapping(value = "/excelConvert")
+	public String excelConvert(Model model) {
+		List<MenuDTO> m_list = service.getAllMenu();
+		List<Map<String,String>> list = new ArrayList<Map<String,String>>();
+		
+		for(int i=0;i<m_list.size();i++) {
+			Map<String,String> map = new HashMap<String,String>();
+			map.put("name", m_list.get(i).getMname());
+			map.put("price", m_list.get(i).getPrice()+"");
+			map.put("todaysold", m_list.get(i).getTodaysold()+"");
+			map.put("money", (m_list.get(i).getPrice()*m_list.get(i).getTodaysold())+"");
+		
+			list.add(0, map);
+		}
+		
+		service.setZeroTodaySold();
+		
+		model.addAttribute("list", list);
+
+		return "admin/excel";
+	}
 }

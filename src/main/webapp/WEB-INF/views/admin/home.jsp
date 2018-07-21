@@ -66,6 +66,10 @@
 					</c:forEach>
 				</tbody>
 			</table>
+			<c:if test="${menu_num==1}">
+				<input type="button" name="excelConverBtn" id="excelConverBtn" value="excel" onclick="gogo()"/>
+				*if you download this, today's sold become zero*
+			</c:if>
 		</div>
 	</main>
 	
@@ -76,6 +80,10 @@
 			  }else{
 			      return false;
 			  }
+		}
+		
+		function gogo(){
+			location.href="excelConvert";
 		}
 	</script>
 </body>

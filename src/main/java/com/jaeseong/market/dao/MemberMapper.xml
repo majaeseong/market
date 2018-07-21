@@ -18,4 +18,10 @@
 		delete from member where id=#{id}
 	</delete>
 	
+	<update id="editMember" parameterType="MemberDTO">
+		update member
+		set nickname=#{nickname}, password=#{password}
+		where id=#{id}
+	</update>
+	
 </mapper>

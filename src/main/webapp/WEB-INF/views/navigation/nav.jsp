@@ -18,11 +18,20 @@
 			${loginUser.nickname}님 어서오세요 :)
 		</div>
 		<div>
+			<c:if test="${loginUser.auth==1 }">
+				<a href="../admin/home">Admin Home</a>
+			</c:if>
+			
+			<a href="../member/home">Home</a>
+			<a href="../member/order">Order Page</a>
+			<a href="../member/myPage">My Page</a>
+		</div>
+		<div>
 			<a href="../logout">Logout</a>
 		</div>
 	</c:if>
 	<c:if test="${loginUser==null }">
-		go to login
+		LoginPage :)
 	</c:if>
 </body>
 </html>

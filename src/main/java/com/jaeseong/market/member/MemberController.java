@@ -70,6 +70,26 @@ public class MemberController {
 		return "redirect:/member/home";
 	}
 	
+	@RequestMapping(value = "/myPage", method=RequestMethod.GET)
+	public String myPage(HttpSession session,Model model) {
+		
+		MemberDTO mem = (MemberDTO)session.getAttribute("loginUser");
+		
+		model.addAttribute("mem", service.getMemberByUserId(mem.getUserid()));
+		
+		return "/member/myPage";
+	}
+	
+	@RequestMapping(value = "/myPage", method=RequestMethod.POST)
+	public String myPage(HttpSession session,MemberDTO mdto) {
+		
+		service.editMember(mdto);
+		
+		return "redirect:/admin/home";
+	}
+	
+	
+	
 	@RequestMapping(value = "/getOrderByFinished")
 	@ResponseBody public List<OrderForViewDTO> getOrderByFinished() {
 		return service.getOrderByFinished();

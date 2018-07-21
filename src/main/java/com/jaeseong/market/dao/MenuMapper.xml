@@ -28,4 +28,8 @@
 		where id=#{param1}
 	</update>
 	
+	<update id="setZeroTodaySold">
+		update menu set todaysold = 0
+	</update>
+	
 </mapper>

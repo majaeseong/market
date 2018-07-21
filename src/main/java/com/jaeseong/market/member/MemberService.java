@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.jaeseong.market.dao.MemberMapper;
 import com.jaeseong.market.dao.MenuMapper;
 import com.jaeseong.market.dao.Order_Mapper;
+import com.jaeseong.market.dto.MemberDTO;
 import com.jaeseong.market.dto.MenuDTO;
 import com.jaeseong.market.dto.OrderForViewDTO;
 import com.jaeseong.market.dto.Order_DTO;
@@ -22,6 +24,9 @@ public class MemberService {
 	
 	@Autowired
 	Order_Mapper o_mapper;
+	
+	@Autowired
+	MemberMapper mem_mapper;
 	
 	public List<MenuDTO> getAllMenu() {
 		return menu_mapper.getAllMenu();
@@ -65,7 +70,6 @@ public class MemberService {
 	@Transactional(rollbackFor=SQLException.class)
 	public void delOrderById(int id) {
 		//order_id를 가져온다.
-		System.out.println("okay?");
 		int order_id = o_mapper.getOrderId(id);
 		//detail을 삭제한다.
 		o_mapper.deleteOrderDetailById(id);
@@ -75,6 +79,14 @@ public class MemberService {
 			o_mapper.deleteOrder(order_id);
 		}
 		
+	}
+
+	public void editMember(MemberDTO mdto) {
+		mem_mapper.editMember(mdto);
+	}
+
+	public MemberDTO getMemberByUserId(String userid) {
+		return mem_mapper.getMemberByUserId(userid);
 	}
 
 }
