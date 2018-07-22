@@ -46,11 +46,6 @@ public class MemberController {
 			}
 				
 		}
-		
-		for(int i=0;i<real_num.length;i++) {
-			System.out.println("hi+ "+real_num[i]);
-		}
-		
 		MemberDTO mem = (MemberDTO)session.getAttribute("loginUser");
 		
 		service.orderProceed(mem.getId(),menu,real_num);

@@ -45,7 +45,6 @@ public class MemberService {
 			od.setMenu_id(Integer.parseInt(menu[i]));
 			od.setOrder_id(order_id);
 			od.setQuantity(Integer.parseInt(num[i]));
-			System.out.println(num[i]);
 			
 			o_mapper.insertOrder_detail(od);
 			
