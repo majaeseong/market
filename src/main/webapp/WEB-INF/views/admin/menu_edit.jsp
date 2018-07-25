@@ -9,7 +9,7 @@
 </head>
 <body>
 	<c:import url="../navigation/nav.jsp"/>
-	<main>
+	<main class="menu_edit">
 		<form action ="edit_menu" method="POST">
 			
 				<!-- ADD -->
@@ -23,7 +23,7 @@
 					Menu Price :
 					<input type="number" name="price">
 				</label>
-				<input type="submit" value="Add">
+				<input type="submit" value="Add" class="btn btn-success btn-sm">
 			</c:if>
 			
 				<!-- Edit -->
@@ -39,7 +39,7 @@
 					<input type="number" name="price"
 						value="${menu.price }">
 				</label>
-				<input type="submit" value="Edit">
+				<input type="submit" value="Edit" class="btn btn-success btn-sm">
 			</c:if>
 			
 		</form>

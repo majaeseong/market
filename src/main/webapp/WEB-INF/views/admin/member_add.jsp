@@ -11,23 +11,43 @@
 	<c:import url="../navigation/nav.jsp"/>
 	
 	<form action="member_add" method="POST">
-		<label>
-			Id : <input type="text" name="userid" id="userid">
-			<button onclick="return check_id()">Check ID</button>
-		</label>
-	
-		<label>
-			Password : <input type="password" name="password" id="password">
-		</label>
-		
-		<label>
-			Password Confirm : <input type="password" name="password2" id="password2">
-		</label>
-		<label>
-			Name : <input type="text" name="nickname" id="nickname">
-		</label>
-		<br>
-		<input type="submit" value="Add Member" onclick="return memberAddConfirm()">
+		<table class="table">
+			<tr>
+				<td>ID</td>
+				<td>
+					 <input type="text" name="userid" id="userid">
+				</td>
+				<td>
+					<button onclick="return check_id()" class="btn btn-info">Check ID</button>
+				</td>
+			</tr>
+			<tr>
+				<td>Password</td>
+				<td colspan="2">
+					<input type="password" name="password" id="password">
+				</td>
+			</tr>
+			<tr>
+				<td>Password Confirm</td>
+				<td colspan="2">
+					<input type="password" name="password2" id="password2">
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Name
+				</td>
+				<td colspan="2">
+					<input type="text" name="nickname" id="nickname">
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3">
+					<input type="submit" value="Add Member" onclick="return memberAddConfirm()"
+						class="btn btn-primary">
+				</td>
+			</tr>
+		</table>
 	</form>
 	<input type="hidden" id="check" value="0">
 	
