@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.jaeseong.market.service.marketService;
 
@@ -15,22 +16,23 @@ public class MarketController {
 	marketService service;
 	
 	@RequestMapping(value = "/order")
-	public String order(Model model) {
+	public String order(Model model, @RequestParam(required=false ,defaultValue="0") int order_id) {
 		
 		model.addAttribute("menu0", service.getAllMenuByKind(0));
 		model.addAttribute("menu1", service.getAllMenuByKind(1));
+
+		model.addAttribute("order_id", order_id);
 		return "order/order";
 	}
 	
-	@RequestMapping(value = "/test")
-	public String test(String[] menu_num) {
+	@RequestMapping(value = "/add_order")
+	public String add_order(String[] menu_num, Model model) {
 		
-		System.out.println("saaasdsasasasa");
-		for(int i=0;i<menu_num.length;i++) {
-			System.out.println(menu_num[i]);
-		}
+		int result = service.add_order(menu_num);
 		
-		return "order/order";
+		model.addAttribute("order_id", result);
+		
+		return "redirect:order";
 	}
 	
 	

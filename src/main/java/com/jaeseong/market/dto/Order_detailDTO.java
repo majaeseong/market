@@ -2,7 +2,7 @@ package com.jaeseong.market.dto;
 
 public class Order_detailDTO {
 
-	private int id, order_id, menu_id, quantity, finished;
+	private int id, order_id, menu_id, quantity, successed;
 
 	public int getId() {
 		return id;
@@ -36,13 +36,14 @@ public class Order_detailDTO {
 		this.quantity = quantity;
 	}
 
-	public int getFinished() {
-		return finished;
+	public int getSuccessed() {
+		return successed;
 	}
 
-	public void setFinished(int finished) {
-		this.finished = finished;
+	public void setSuccessed(int successed) {
+		this.successed = successed;
 	}
+
 	
 	
 }

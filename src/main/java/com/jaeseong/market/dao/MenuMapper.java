@@ -8,4 +8,5 @@ public interface MenuMapper {
 
 	List<MenuDTO> getAllMenuByKind(int kind);
 
+
 }

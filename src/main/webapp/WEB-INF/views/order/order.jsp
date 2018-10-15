@@ -5,6 +5,8 @@
 <html>
 <head>
 	<title>Order</title>
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -19,7 +21,8 @@
 					${m.name}
 				</td>
 				<td>
-					<input type="number" value="0" id="menu_${m.id}" name="menu_num">
+					<input type="number" value="0" id="menu_${m.id}"
+						 name="menu_num" min="0">
 				</td>
 				</tr>
 			</c:forEach>
@@ -37,8 +40,8 @@
 					${m.name}
 				</td>
 				<td>
-					<input type="number" value="0" id="menu_${m.id}" name="menu_num">
-					<input type="hidden" value="0" id="last_num">
+					<input type="number" value="0" id="menu_${m.id}"
+						 name="menu_num" min="0">
 				</td>
 				</tr>
 			</c:forEach>
@@ -46,20 +49,43 @@
 	</fieldset>
 	
 	<br><br>
-	<button onclick="order()">Order</button>
+	<button onclick="return order()">Order</button>
+	
+	
+	<input type="hidden" value="${order_id}" id="order_id">
+	
+	
 	
 	<script>
+		$(document).ready(function(){
+			
+			var id = document.getElementById('order_id').value;
+			if(id !=0)
+				alert("your order number is "+id);
+		});
+		
 		function order(){
+			
+			var count=0;
 			number_list =[];
-			var last_num = document.getElementById("last_num").value;
-			for(var i=1 ; i<=9 ; i++){
-				
+
+			for(var i=1 ; i<=9 ; i++){	
 				var temp = "menu_"+i;
 				var a = document.getElementById(temp).value;
 				number_list[i-1]=a;
+				if(a!=0){
+					count++;
+				}
 			}
 			
-			location.href="test?menu_num="+number_list;
+			if(count==0){
+				alert("you must check your order");
+				return false;
+			}else{
+				location.href="add_order?menu_num="+number_list;
+				return true;
+			}
+			
 			
 		} 
 	</script>
