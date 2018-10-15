@@ -6,17 +6,6 @@ import com.jaeseong.market.dto.MenuDTO;
 
 public interface MenuMapper {
 
-	List<MenuDTO> getAllMenu();
+	List<MenuDTO> getAllMenuByKind(int kind);
 
-	void del_menu(int id);
-
-	MenuDTO getMenuById(int id);
-
-	void addMenu(MenuDTO mdto);
-
-	void editMenu(MenuDTO mdto);
-
-	void plusTodaySoldById(int menu, int quantity);
-
-	void setZeroTodaySold();
 }
