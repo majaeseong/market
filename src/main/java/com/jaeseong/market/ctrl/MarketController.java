@@ -1,11 +1,15 @@
 package com.jaeseong.market.ctrl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.jaeseong.market.dto.OrderForViewDTO;
 import com.jaeseong.market.service.marketService;
 
 
@@ -33,6 +37,38 @@ public class MarketController {
 		model.addAttribute("order_id", result);
 		
 		return "redirect:order";
+	}
+	
+	@RequestMapping(value = "/gui")
+	public String gui() {
+		
+		return "list_page/gui";
+	}
+	
+	@RequestMapping(value = "/kitchen")
+	public String kitchen() {
+		
+		return "list_page/kitchen";
+	}
+	
+	
+	@RequestMapping(value = "/getOrderByKinds")
+	@ResponseBody public List<OrderForViewDTO> getOrderByFinished(@RequestParam int kinds) {
+		return service.getOrderByKinds(kinds);
+	}
+	
+	@RequestMapping(value = "/finished")
+	public String finished(@RequestParam int id, @RequestParam int kinds) {
+		
+		service.finished(id);
+		
+		if(kinds==0) {
+			return "redirect:gui";
+		}else {
+			return "redirect:kitchen";
+		}
+		
+		
 	}
 	
 	

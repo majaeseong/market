@@ -5,8 +5,10 @@
 <html>
 <head>
 	<title>Order</title>
-	
+	<!-- Ajax & jquery -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<!-- Web socket CDN -->
+    <script src="http://cdn.sockjs.org/sockjs-0.3.4.js"></script>
 </head>
 
 <body>
@@ -49,7 +51,7 @@
 	</fieldset>
 	
 	<br><br>
-	<button onclick="return order()">Order</button>
+	<button onclick="return order()" id="sendBtn">Order</button>
 	
 	
 	<input type="hidden" value="${order_id}" id="order_id">
@@ -59,10 +61,48 @@
 	<script>
 		$(document).ready(function(){
 			
+			//Order Success
 			var id = document.getElementById('order_id').value;
 			if(id !=0)
 				alert("your order number is "+id);
+			
+			//Order Button (WebSocket)
+			$("#sendBtn").click(function() {
+               sendMessage();
+             });
+			
 		});
+		
+		var sock = new WebSocket("ws://localhost:8080/market/echo/websocket");
+		sock.onmessage = onMessage;
+		
+		function sendMessage(){
+			list1_count=0;
+			list2_count=0;
+			
+			for(var i=1; i<=5;i++){
+				var temp= "menu_"+i;
+				var a = document.getElementById(temp).value;
+				if(a!=0){
+					list1_count++;
+				}
+			}
+			
+			for(var i=6; i<=9;i++){
+				var temp= "menu_"+i;
+				var a = document.getElementById(temp).value;
+				if(a!=0){
+					list2_count++;
+				}
+			}
+			if(list1_count!=0){
+				sock.send('list1_order');
+			}
+			if(list2_count!=0){
+				sock.send('list2_order');
+			}
+			
+		}
 		
 		function order(){
 			

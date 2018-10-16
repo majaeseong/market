@@ -12,4 +12,20 @@
 		values(#{order_id},#{menu_id},#{quantity})
 	</insert>
 	
+	<select id="getOrderByKinds" parameterType="int" resultType="OrderForViewDTO">
+		select order_detail.id as id, order_detail.order_id as order_id , menu.name as mname, order_detail.quantity as quantity
+		from order_detail
+		join menu
+		on menu.id = order_detail.menu_id
+		and successed = 0
+		and kinds = #{kinds}
+		order by order_id
+	</select>
+	
+	<update id="finished" parameterType="int">
+		update order_detail
+		set successed=1
+		where id= #{id}
+	</update>
+	
 </mapper>

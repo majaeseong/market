@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.jaeseong.market.dao.MenuMapper;
 import com.jaeseong.market.dao.OrderMapper;
 import com.jaeseong.market.dto.MenuDTO;
+import com.jaeseong.market.dto.OrderForViewDTO;
 import com.jaeseong.market.dto.Order_DTO;
 import com.jaeseong.market.dto.Order_detailDTO;
 
@@ -48,6 +49,15 @@ public class marketService {
 		}
 		
 		return id;
+		
+	}
+
+	public List<OrderForViewDTO> getOrderByKinds(int kinds) {
+		return oMapper.getOrderByKinds(kinds);
+	}
+
+	public void finished(int id) {
+		oMapper.finished(id);
 		
 	}
 
