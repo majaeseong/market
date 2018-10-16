@@ -16,4 +16,10 @@ public interface OrderMapper {
 
 	void finished(int id);
 
+	int getOrderIdByOrderDetailId(int id);
+
+	int getCountNotFinishedByOrderId(int order_id);
+
+	void setOrderFinished(int order_id);
+
 }

@@ -55,9 +55,15 @@ public class marketService {
 	public List<OrderForViewDTO> getOrderByKinds(int kinds) {
 		return oMapper.getOrderByKinds(kinds);
 	}
-
+	@Transactional(rollbackFor=SQLException.class)
 	public void finished(int id) {
 		oMapper.finished(id);
+		
+		int order_id = oMapper.getOrderIdByOrderDetailId(id);
+		
+		if(oMapper.getCountNotFinishedByOrderId(order_id)==0) {
+			oMapper.setOrderFinished(order_id);
+		}
 		
 	}
 

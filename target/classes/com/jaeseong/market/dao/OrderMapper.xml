@@ -28,4 +28,23 @@
 		where id= #{id}
 	</update>
 	
+	<select id="getOrderIdByOrderDetailId" parameterType="int" resultType="int">
+		select order_id
+		from order_detail
+		where id = #{id}
+	</select>
+	
+	<select id="getCountNotFinishedByOrderId" parameterType="int" resultType="int">
+		select count(*)
+		from order_detail
+		where order_id=#{id}
+		and successed = 0
+	</select>
+	
+	<update id="setOrderFinished" parameterType="int">
+		update order_
+		set successed=1
+		where id=#{id}
+	</update>
+	
 </mapper>
