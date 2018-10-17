@@ -1,12 +1,10 @@
 @import "reset.css";
 @import url("https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css");
 
-@import "navi.css";
-@import "login.css";
+@import "list.css";
+@import "order.css";
+body,html{
+	height:100%;
+	width:100%;
+}
 
-@import "member/memberhome.css";
-@import "member/memberOrder.css";
-@import "member/myPage.css";
-
-@import "admin/adminHome.css";
-@import "admin/menu_edit.css";
